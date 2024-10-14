@@ -1,0 +1,33 @@
+import os
+from dotenv import load_dotenv
+
+def load_environment_settings():
+    load_dotenv()
+
+    db_host = os.getenv('DB_HOST')
+    db_user = os.getenv('DB_USER')
+    db_pass = os.getenv('DB_PASS')
+    app_mode = os.getenv('APP_MODE')
+    debug = os.getenv('DEBUG') == 'True'  
+    port = int(os.getenv('PORT', 8080)) 
+
+    print(f"Database Host: {db_host}")
+    print(f"Database User: {db_user}")
+    print(f"Database Password: {db_pass}")
+    print(f"Application Mode: {app_mode}")
+    print(f"Debug Mode: {debug}")
+    print(f"Port: {port}")
+
+if __name__ == "__main__":
+    load_environment_settings()
+
+from dotenv import set_key
+import os
+
+def update_environment_setting(env_file, key, value):
+    set_key(env_file, key, value)
+    print(f"Updated {key} to {value} in {env_file}")
+
+if __name__ == "__main__":
+    env_file = '.env'
+    update_environment_setting(env_file, 'DB_PASS', 'new_secure_password')

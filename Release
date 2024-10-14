@@ -1,0 +1,22 @@
+# Create Release
+git checkout main
+git pull origin main  # 确保主分支是最新的
+git checkout -b release/v1.0.0
+
+# version.py
+__version__ = "1.0.0"
+
+# Release Notes for Version 1.0.0
+
+## New Features
+- Added functionality to add and manage books.
+
+## Bug Fixes
+- Fixed issue with adding books without title or author.
+
+git add version.py RELEASE_NOTES.md
+git commit -m "Prepare for release v1.0.0"
+
+git checkout main
+
+git merge release/v1.0.0

@@ -1,0 +1,18 @@
+import os
+from dotenv import load_dotenv, set_key
+
+# Load existing configuration
+load_dotenv()
+
+def emergency_fix():
+    # 假设我们需要紧急修改数据库密码
+    new_db_pass = "new_secure_password"  # 新密码
+
+    # 更新 .env 文件中的 DB_PASS
+    env_file = ".env"
+    set_key(env_file, "DB_PASS", new_db_pass)
+
+    print("Emergency fix applied: DB_PASS updated successfully.")
+
+if __name__ == "__main__":
+    emergency_fix()

@@ -1,0 +1,42 @@
+import configparser
+
+def read_config(file_path):
+    config = configparser.ConfigParser()
+    config.read(file_path)
+
+    db_host = config.get('database', 'host')
+    db_user = config.get('database', 'user')
+    db_password = config.get('database', 'password')
+    db_name = config.get('database', 'database_name')
+
+    debug_mode = config.getboolean('settings', 'debug')
+    port = config.getint('settings', 'port')
+
+    print(f"Database Host: {db_host}")
+    print(f"Database User: {db_user}")
+    print(f"Database Password: {db_password}")
+    print(f"Database Name: {db_name}")
+    print(f"Debug Mode: {debug_mode}")
+    print(f"Port: {port}")
+
+if __name__ == "__main__":
+    read_config('config.ini')
+
+import configparser
+
+def update_config(file_path, section, option, value):
+    config = configparser.ConfigParser()
+    config.read(file_path)
+
+    if not config.has_section(section):
+        config.add_section(section)
+
+    config.set(section, option, value)
+
+    with open(file_path, 'w') as config_file:
+        config.write(config_file)
+
+    print(f"Updated {section}.{option} to {value} in {file_path}")
+
+if __name__ == "__main__":
+    update_config('config.ini', 'database', 'password', 'new_secure_password')

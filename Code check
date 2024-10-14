@@ -1,0 +1,32 @@
+import os
+import subprocess
+
+def run_pylint(directory):
+    print("Running pylint...")
+    result = subprocess.run(['pylint', directory], capture_output=True, text=True)
+    print(result.stdout)
+    if result.returncode != 0:
+        print("Pylint found issues in your code.")
+    else:
+        print("Pylint found no issues.")
+
+def run_flake8(directory):
+    print("Running flake8...")
+    result = subprocess.run(['flake8', directory], capture_output=True, text=True)
+    print(result.stdout)
+    if result.returncode != 0:
+        print("Flake8 found issues in your code.")
+    else:
+        print("Flake8 found no issues.")
+
+def main():
+    directory = input("Enter the directory to check (default is current directory): ") or "."
+    if not os.path.isdir(directory):
+        print("The specified directory does not exist.")
+        return
+
+    run_pylint(directory)
+    run_flake8(directory)
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,20 @@
+# feature_add_book.py
+from book_manager import BookManager
+
+def main():
+    book_manager = BookManager()
+
+    # 添加书籍
+    title = input("Enter book title: ")
+    author = input("Enter book author: ")
+    book_manager.add_book(title, author)
+    print(f"Added '{title}' by {author}.")
+
+    # 列出所有书籍
+    books = book_manager.get_all_books()
+    print("Books in Library:")
+    for book in books:
+        print(f"- {book['title']} by {book['author']}")
+
+if __name__ == "__main__":
+    main()
